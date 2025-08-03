@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Management Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            background-image: 
+                linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.8) 100%),
+                url('img/dash.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .left-frame {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .right-frame {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .order-button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            display: block;
+            font-size: 16px;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .order-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .amount-box {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 20px;
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            background-color: #ecf0f1;
+            margin-top: 20px;
+        }
+        .transaction-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .transaction-input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .transaction-button {
+            width: 85%;
+            padding: 10px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .add-button {
+            background-color: #2ecc71;
+        }
+        .add-button:hover {
+            background-color: #27ae60;
+        }
+        .withdraw-button {
+            background-color: #e74c3c;
+        }
+        .withdraw-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portfolio Dashboard</h1>
+    <div class="container">
+        <!-- Left Frame: Portfolio Table -->
+        <div class="left-frame">
+            <button class="order-button" onclick="window.location.href='place_order.html'">Place Order</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stock</th>
+                        <th>Current Price (INR)</th>
+                        <th>Change</th>
+                        <th>Change %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Reliance Industries</td><td>2,450.75</td><td class="positive">+15.30</td><td class="positive">+0.63%</td></tr>
+                    <tr><td>Tata Consultancy Services</td><td>3,210.50</td><td class="negative">-22.75</td><td class="negative">-0.70%</td></tr>
+                    <tr><td>HDFC Bank</td><td>1,575.25</td><td class="positive">+8.50</td><td class="positive">+0.54%</td></tr>
+                    <tr><td>Infosys</td><td>1,320.00</td><td class="negative">-5.75</td><td class="negative">-0.43%</td></tr>
+                    <tr><td>ITC</td><td>275.80</td><td class="positive">+3.20</td><td class="positive">+1.17%</td></tr>
+                    <tr><td>Hindustan Unilever</td><td>2,680.15</td><td class="negative">-12.30</td><td class="negative">-0.46%</td></tr>
+                    <tr><td>ICICI Bank</td><td>890.50</td><td class="positive">+6.75</td><td class="positive">+0.76%</td></tr>
+                    <tr><td>Bharti Airtel</td><td>725.90</td><td class="positive">+4.25</td><td class="positive">+0.59%</td></tr>
+                    <tr><td>State Bank of India</td><td>510.30</td><td class="negative">-2.80</td><td class="negative">-0.55%</td></tr>
+                    <tr><td>Axis Bank</td><td>945.75</td><td class="positive">+7.50</td><td class="positive">+0.80%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Right Frame: Amount Available & Transactions -->
+        <div class="right-frame">
+            <h2>Portfolio Balance</h2>
+            <div class="amount-box" id="balance">₹ 1,50,000.00</div>
+
+            <div class="transaction-section">
+                <h3>Add Money</h3>
+                <input type="number" id="addAmount" class="transaction-input" placeholder="Enter amount">
+                <button class="transaction-button add-button" onclick="addMoney()">Add Money</button>
+            </div>
+
+            <div class="transaction-section">
+                <h3>Withdraw Money</h3>
+                <input type="number" id="withdrawAmount" class="transaction-input" placeholder="Enter amount">
+                <button class="transaction-button withdraw-button" onclick="withdrawMoney()">Withdraw Money</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

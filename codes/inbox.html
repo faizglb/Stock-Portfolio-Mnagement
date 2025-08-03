@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox - Stock Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/innn.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9); /* Light transparency for readability */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        .message-list {
+            width: 35%;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+        }
+        .message-list div {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .message-list div:hover {
+            background-color: #f0f0f0;
+        }
+        .message-preview {
+            width: 65%;
+            padding: 20px;
+        }
+        .message-preview h3 {
+            margin-top: 0;
+        }
+        .selected {
+            background-color: #d9eaff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Message List -->
+        <div class="message-list" id="messageList">
+            <h3 style="text-align: center;">📩 Inbox</h3>
+        </div>
+
+        <!-- Message Preview -->
+        <div class="message-preview" id="messagePreview">
+            <h3>Select a message to view</h3>
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            { id: 1, sender: "Stock Alerts", subject: "Your stock is up 5%", time: "10:30 AM", content: "Apple Inc. (AAPL) is up by 5% today. Consider reviewing your holdings." },
+            { id: 2, sender: "Market News", subject: "Tech stocks rally", time: "9:15 AM", content: "Tech stocks are seeing a significant rally amid earnings reports." },
+            { id: 3, sender: "Portfolio Update", subject: "Monthly performance report", time: "Yesterday", content: "Your portfolio saw a 3% increase in the past month." }
+        ];
+
+        function loadMessages() {
+            const messageList = document.getElementById("messageList");
+            messageList.innerHTML = "<h3 style='text-align: center;'>📩 Inbox</h3>";
+
+            messages.forEach((msg) => {
+                let messageItem = document.createElement("div");
+                messageItem.innerHTML = `<strong>${msg.sender}</strong><br>${msg.subject} <br><small>${msg.time}</small>`;
+                messageItem.onclick = () => showMessage(msg);
+                messageList.appendChild(messageItem);
+            });
+        }
+
+        function showMessage(msg) {
+            const preview = document.getElementById("messagePreview");
+            preview.innerHTML = `<h3>${msg.subject}</h3><p><strong>From:</strong> ${msg.sender}</p><p>${msg.content}</p>`;
+
+            // Highlight selected message
+            const messageItems = document.querySelectorAll(".message-list div");
+            messageItems.forEach(item => item.classList.remove("selected"));
+            event.target.closest("div").classList.add("selected");
+        }
+
+        window.onload = loadMessages;
+    </script>
+
+</body>
+</html>
+

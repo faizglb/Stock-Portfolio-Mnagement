@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Stock Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #28a745;
+            color: white;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+        .terms {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .terms input {
+            width: auto;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📝 Register</h2>
+        
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name">
+            <div class="error" id="nameError">Name cannot be empty</div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <div class="error" id="emailError">Invalid email address</div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+            <div class="error" id="phoneError">Invalid phone number</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter a strong password">
+            <div class="error" id="passwordError">Password must be at least 6 characters</div>
+        </div>
+
+        <div class="form-group terms">
+            <input type="checkbox" id="terms">
+            <label for="terms">I agree to the <a href="#">terms and conditions</a></label>
+        </div>
+
+        <button onclick="register()">Register</button>
+    </div>
+
+    <script>
+        function register() {
+            const fullName = document.getElementById("fullName").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const password = document.getElementById("password").value;
+            const termsAccepted = document.getElementById("terms").checked;
+            let valid = true;
+
+            // Validation
+            if (fullName.trim() === "") {
+                document.getElementById("nameError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("nameError").style.display = "none";
+            }
+
+            if (!email.includes("@")) {
+                document.getElementById("emailError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            if (phone.length < 10 || isNaN(phone)) {
+                document.getElementById("phoneError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("phoneError").style.display = "none";
+            }
+
+            if (password.length < 6) {
+                document.getElementById("passwordError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("passwordError").style.display = "none";
+            }
+
+            if (!termsAccepted) {
+                alert("You must accept the terms and conditions.");
+                return;
+            }
+
+            if (!valid) return;
+
+            // Save Data (For Demo - Replace with Backend Logic)
+            const userData = { fullName, email, phone, password };
+            localStorage.setItem("userData", JSON.stringify(userData));
+
+            alert("Registration successful! Redirecting to dashboard...");
+            window.location.href = "dashboard.html"; // Redirect to dashboard
+        }
+    </script>
+
+</body>
+</html>

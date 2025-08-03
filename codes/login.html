@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Stock Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        .remember-me input {
+            width: auto;
+            margin-right: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🔑 Login</h2>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <div class="error" id="emailError">Invalid email address</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <div class="error" id="passwordError">Password cannot be empty</div>
+        </div>
+
+        <div class="form-group remember-me">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember Me</label>
+        </div>
+
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const rememberMe = document.getElementById("rememberMe").checked;
+            let valid = true;
+
+            // Simple Validation
+            if (!email.includes("@")) {
+                document.getElementById("emailError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("emailError").style.display = "none";
+            }
+
+            if (password.trim() === "") {
+                document.getElementById("passwordError").style.display = "block";
+                valid = false;
+            } else {
+                document.getElementById("passwordError").style.display = "none";
+            }
+
+            if (!valid) return;
+
+            // Simulated authentication
+            const storedEmail = "user@example.com"; // Replace with actual authentication logic
+            const storedPassword = "password123";   // Replace with actual authentication logic
+
+            if (email === storedEmail && password === storedPassword) {
+                alert("Login successful!");
+                
+                if (rememberMe) {
+                    localStorage.setItem("rememberedEmail", email);
+                } else {
+                    localStorage.removeItem("rememberedEmail");
+                }
+
+                window.location.href = "dashboard.html"; // Redirect to dashboard
+            } else {
+                alert("Invalid email or password!");
+            }
+        }
+
+        // Load remembered email
+        window.onload = function () {
+            const savedEmail = localStorage.getItem("rememberedEmail");
+            if (savedEmail) {
+                document.getElementById("email").value = savedEmail;
+                document.getElementById("rememberMe").checked = true;
+            }
+        };
+    </script>
+
+</body>
+</html>
