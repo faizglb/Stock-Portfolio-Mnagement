@@ -1,0 +1,92 @@
+/* General styling for the whole page */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("C:/NEW/uv st/mini project/img/background.jpg"); 
+  background-size: cover; 
+  background-position: center center; 
+  background-attachment: fixed; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white; /* Text color for contrast */
+}
+
+/* Styling for the login container */
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the background */
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Styling for input fields */
+.textbox {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 12px;
+  padding-left: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.textbox input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/* Styling for the login button */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 500px) {
+  .login-box {
+    padding: 30px;
+    width: 90%;
+  }
+
+  .login-box h2 {
+    font-size: 20px;
+  }
+}
+
